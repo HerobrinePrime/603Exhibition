@@ -53,47 +53,8 @@
       bloom
     ></Model>
 
-    <Plane
-      :x="-132.85"
-      :y="-944.59"
-      :z="-246.43"
-      ref="cubeRef"
-      :inner-rotation-y="180"
-    >
-      <!-- sprite -->
-      <HTMLMesh :y="100" ref="meshRef" :scale="0.2" bloom :opacity-factor="1">
-        <div class="view-port">
-          <div class="year-container">
-            <div class="year" v-for="theYear in years" :key="theYear">
-              {{ theYear }}
-            </div>
-          </div>
-        </div>
-      </HTMLMesh>
-
-      <Plane
-        :y="100"
-        :x="-100"
-        texture="/UI/year-controller/left.png"
-        :opacity-factor="1"
-        :scale-y="0.6"
-        bloom
-        @click="subtractYear"
-        @mouse-out="mouseDisPointer"
-        @mouse-over="mousePointer"
-      ></Plane>
-      <Plane
-        :y="100"
-        :x="100"
-        texture="/UI/year-controller/right.png"
-        :opacity-factor="1"
-        :scale-y="0.6"
-        bloom
-        @click="addYear"
-        @mouse-out="mouseDisPointer"
-        @mouse-over="mousePointer"
-      ></Plane>
-    </Plane>
+    <!-- year controller -->
+    <YearController></YearController>
 
     <Cube
       v-for="(cube, index) in computedCubes"
@@ -122,6 +83,7 @@
 
     <!-- video-texture="/video/sayori.mp4" -->
     <!-- bloom -->
+    <!-- video -->
     <Plane
       :scale-x="1"
       :scale-y="1"
@@ -254,12 +216,12 @@
 import {
   onMounted,
   ref,
-  reactive,
-  Ref,
-  watchEffect,
-  VNodeRef,
-  nextTick,
-  computed,
+  // reactive,
+  // Ref,
+  // watchEffect,
+  // VNodeRef,
+  // nextTick,
+  // computed,
 } from "vue";
 import {
   World,
@@ -270,7 +232,7 @@ import {
   Setup,
   Find,
   Plane,
-  HTMLMesh,
+  // HTMLMesh,
   Cube,
 } from "lingo3d-vue";
 import { gsap } from "gsap";
@@ -293,14 +255,21 @@ import {
   computedCubes,
   computedPlanes,
   // cubesDisablew
-  addYear,
-  subtractYear,
+  // addYear,
+  // subtractYear,
   year,
-  yearForDisplay,
+  // yearForDisplay,
   years,
   intiMesh,
 } from "@/hooks/cubesController";
-import { mousePointer,mouseDisPointer, } from '@/hooks/mousePointerController'
+import { 
+  mousePointer,
+  mouseDisPointer, 
+} from '@/hooks/mousePointerController'
+
+//components
+import YearController from './components/yearController.vue'
+
 //#endregion
 
 const meshRef = ref();
@@ -355,27 +324,5 @@ onMounted(() => {
   }
 }
 
-.view-port {
-  position: relative;
-  height: 500px;
-  width: 500px;
-  overflow: hidden;
-  .year-container {
-    right: 0;
-    position: absolute;
-    display: flex;
-    // background-color: antiquewhite;
-    .year {
-      position: relative;
-      height: 500px;
-      width: 500px;
-      // background-color: aqua;
-      font-size: 150px;
-      font-weight: bold;
-      text-align: center;
-      line-height: 500px;
-      overflow: hidden;
-    }
-  }
-}
+
 </style>
