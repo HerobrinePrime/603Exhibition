@@ -6,6 +6,7 @@
       physics="map"
       name="map"
     ></Model>
+
     <!-- <Model :scale="100" src="/models/test.glb" physics="map" name="map"> -->
     <!-- <Find name="road" physics="map"></Find> -->
     <!-- <Find name="Ground"  physics="map" :metalness-factor="1" :roughness-factor="0"></Find> -->
@@ -22,7 +23,8 @@
     <!-- <Model src="/models/metal.glb" :scale="3" :x="-963.12" :y="-800" reflection></Model> -->
     <!-- <Model src="/models/glass.glb" :scale="3" :x="-863.12" :y="-800" :opacity-factor="0.6"></Model> -->
     <!-- <Model src="/models/moji.glb" :scale="3" :x="-863.12" :y="-800" :opacity-factor="0.6"></Model> -->
-    <Model src="/models/test02.glb" :scale="1" :x="-863.12" :y="-800">
+
+    <!-- <Model src="/models/test02.glb" :scale="1" :x="-863.12" :y="-800">
       <Find
         name="平面"
         reflection
@@ -33,30 +35,30 @@
       <Find name="rahmen">
         <Plane></Plane>
       </Find>
-    </Model>
+    </Model> -->
 
-    <Model
+    <!-- <Model
       src="/models/gradient.glb"
       :scale="1"
       :x="-763.12"
       :z="100"
       :y="-700"
       bloom
-    ></Model>
+    ></Model> -->
 
-    <Model
+    <!-- <Model
       src="/models/logo.fbx"
       :scale="1"
       :x="-663.12"
       :z="100"
       :y="-700"
       bloom
-    ></Model>
+    ></Model> -->
 
     <!-- year controller -->
     <YearController></YearController>
 
-    <Cube
+    <!-- <Cube
       v-for="(cube, index) in computedCubes"
       :key="index"
       :x="index * -70"
@@ -79,12 +81,12 @@
         :cast-shadow="false"
         :ref="computedPlanes[index]"
       ></Plane>
-    </Cube>
+    </Cube> -->
 
     <!-- video-texture="/video/sayori.mp4" -->
     <!-- bloom -->
     <!-- video -->
-    <Plane
+    <!-- <Plane
       :scale-x="1"
       :scale-y="1"
       :x="278.92"
@@ -110,7 +112,7 @@
         :opacity="1"
       >
       </Plane>
-    </Plane>
+    </Plane> -->
     <!-- <Audio ref="audioRef" src="/audio/01.mp3" autoplay loop /> -->
 
     <FirstPersonCamera active mouse-control="drag" :inner-y="75">
@@ -272,7 +274,7 @@ import YearController from './components/yearController.vue'
 
 //#endregion
 
-const meshRef = ref();
+
 
 const cubeRef = ref();
 
@@ -287,7 +289,7 @@ el.addEventListener("ended", () => {
 onMounted(() => {
   keyAction(dummyRef);
   initCubeAnime(cubeRef.value);
-  intiMesh(meshRef);
+  
 });
 
 

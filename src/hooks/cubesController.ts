@@ -4,11 +4,11 @@ import { throttle } from 'lodash'
 
 const MAXPHOTOCOUNT = 10
 
-const yearCount = [4, 5, 3];
-const years = ['2012', '2013', '2014']
+const yearCount = [4, 5, 3, 2, 6, 9, 3, 4];
+const years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
 
-const year = ref(2);
-const yearForDisplay = ref(2);
+const year = ref(yearCount.length - 1);
+const yearForDisplay = ref(yearCount.length - 1);
 
 const cubesDisable = (callback: any = undefined) => {
     gsap.to(cubesInstances, {
@@ -163,8 +163,10 @@ watchEffect(() => {
 
 
 let meshRef: Ref;
-const intiMesh = (theMeshRef: Ref) => {
+let yearScrollerRef:Ref;
+const intiMesh = (theMeshRef: Ref,theYearScrollerRef:Ref) => {
     meshRef = theMeshRef
+    yearScrollerRef = theYearScrollerRef
 }
 watch(yearForDisplay, (v) => {
     console.log(v);
@@ -173,22 +175,26 @@ watch(yearForDisplay, (v) => {
 
 
     let timeline = gsap.timeline()
-    timeline
-        .to(meshRef.value, {
-            opacityFactor: 0,
-            duration: 0.3
-        })
-        .to('.year-container', {
-            x: (years.length - 1 - yearForDisplay.value) * 500,
-            duration: 0
-        }).to(meshRef.value, {
-            opacityFactor: 1,
-            duration: 0.3
-        })
+    timeline.to(yearScrollerRef.value,{
+        duration:0.3,
+        y:100 + (years.length - 1 - yearForDisplay.value) * 60
+    })
+        // .to(meshRef.value, {
+        //     opacityFactor: 0,
+        //     duration: 0.3
+        // })
+        // .to('.year-container', {
+        //     y: -(years.length - 1 - yearForDisplay.value) * 300,
+        //     duration: 0.3
+        // })
+        // .to(meshRef.value, {
+        //     opacityFactor: 1,
+        //     duration: 0.3
+        // })
 })
 
 export {
-    computedCubes, computedPlanes, 
+    computedCubes, computedPlanes,
     // cubesDisable, cubesEnable, 
     addYear, subtractYear, year, yearForDisplay, years, intiMesh
 }
