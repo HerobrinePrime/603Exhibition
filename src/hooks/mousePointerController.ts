@@ -1,12 +1,18 @@
 import { gsap } from 'gsap'
 
 const mousePointer = () => {
-    gsap.to(document.querySelectorAll('canvas')[2].nextSibling, {
-        cursor: 'pointer'
-    })
+    // console.log();
+    // document.querySelectorAll('canvas')[2]?.nextSibling
+    setTimeout(()=>{
+        gsap.to(document.querySelectorAll('canvas')[2]?.nextSibling, {
+            cursor: 'pointer',
+        })
+    },0)
 }
 const mouseDisPointer = () => {
-    gsap.to(document.querySelectorAll('canvas')[2].nextSibling, {
+    // console.log('out');
+
+    gsap.to(document.querySelectorAll('canvas')[2]?.nextSibling, {
         cursor: 'auto'
     })
 }
